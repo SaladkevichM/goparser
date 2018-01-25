@@ -37,9 +37,9 @@ func parserHandler(w http.ResponseWriter, r *http.Request) {
 	t := util.AskCookie(COOK_T, r.FormValue("t"), r, w)
 	n := util.AskCookie(COOK_N, r.FormValue("n"), r, w)
 
-	topics := parse.Topics(util.Load("topics", url))
-	news := parse.News(util.Load("news", t))
-	story = parse.Story(util.Load("story", n))
+	topics := parse.Topics(util.Load("", url))
+	news := parse.News(util.Load("", t))
+	story = parse.Story(util.Load("", n))
 
 	page := &Page{BaseURL: url, Topics: topics, News: news, Story: template.HTML(story)}
 	renderTemplate(w, page)

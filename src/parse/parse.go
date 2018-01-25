@@ -21,7 +21,15 @@ func Topics(text string) *map[string]int {
 	return topics
 }
 
+// TODO. needs another way for extracting article
 func Story(text string) string {
-	regexp, _ := regexp.Compile(".*?article_body.*")
-	return strings.Replace(regexp.FindString(text), "<strong>", "", -1) + "</div>"
+	parts := strings.Split(text, "class=\"js-mediator-article\">")
+	if len(parts) > 0 {
+		parts := strings.Split(parts[1], "</div>")
+		if len(parts) > 0 {
+			regexp, _ := regexp.Compile("<img.*?/>")
+			return regexp.ReplaceAllString(parts[0], "")
+		}
+	}
+	return ""
 }
