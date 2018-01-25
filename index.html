@@ -1,0 +1,27 @@
+<html>
+<body>
+
+	<div style="width: 100%;display: inline-flex;">
+	
+		<div style="float: left;">
+			<ul>
+				{{ range $key, $value := .Topics }}
+					<li><a href="?t={{ $key }}">{{ $key }}</a></li>
+				 {{ end }}
+			</ul>
+		</div>
+
+		<div style="float: right;">
+			<ul>
+				{{ range $key, $value := .News }}
+					<li><a href="?n={{ $key }}">{{ $key }}</a></li> 
+				{{ end }}
+			</ul>
+		</div>
+
+		<div style="float: right;">{{ .Story }}</div>
+		
+	</div>
+
+</body>
+</html>
